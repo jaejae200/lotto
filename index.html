@@ -18,6 +18,9 @@
       margin-right: 1rem;
       margin-left: 1rem;
     }
+    .bonus {
+      font-size: 6rem;
+    }
   </style>
 </head>
 <body>
@@ -42,7 +45,7 @@
       console.log(numbers)
 
       // 로또 공 만들고 번호 삽입.
-      for (let i = 0; i < numbers.length; i++){ 
+      for (let i = 0; i < numbers.length-1; i++){ 
         const ball = document.createElement('div')
         ball.classList.add('ball')
         ball.innerText = numbers[i]
@@ -59,12 +62,31 @@
         } else {
           ball.style.backgroundColor = 'green'
         }
-
-
       }
       
-      alert('로또 번호가 생성되었습니다!')
-    
+      const bonus = document.createElement('div')
+      bonus.innerText = '+'
+      bonus.classList.add('bonus')
+      document.getElementById('ball-container').appendChild(bonus)
+
+
+      const bonusball = document.createElement('div')
+      bonusball.classList.add('ball')
+      bonusball.innerText = numbers[6]
+      document.getElementById('ball-container').appendChild(bonusball)
+
+      if (numbers[6] < 11) {
+          bonusball.style.backgroundColor = 'yellow'
+        } else if (numbers[6] < 21) {
+          bonusball.style.backgroundColor = 'blue'
+        } else if (numbers[6] < 31) {
+          bonusball.style.backgroundColor = 'red'
+        } else if (numbers[6] < 41) {
+          bonusball.style.backgroundColor = 'grey'
+        } else {
+          bonusball.style.backgroundColor = 'green'
+        }
+
     })
   </script>
 </body>
