@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또 추첨</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <style>
+    .ball {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 10rem;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-center py-3 my-5 ">로또 번호 생성기</h1>
+  <div class="text-center my-5">
+    <button class="btn btn-danger btn-lg" id="lottonumber">번호 생성</button>
+  </div>
+  <div class="d-flex justify-content-center" id="ball-container">
+
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>  
+    const button = document.querySelector('#lottonumber')
+    button.addEventListener('click', function() {
+      // 로또 번호 틀
+      const ballContainer = document.querySelector('#ball-container')
+      ballContainer.replaceChildren();
+
+      // 로또 번호 추첨
+      const numbers = _.sampleSize(_.range(1, 46), 7)
+      console.log(numbers)
+
+      // 로또 공 만들고 번호 삽입.
+      for (let i = 0; i < numbers.length; i++){ 
+        const ball = document.createElement('div')
+        ball.classList.add('ball')
+        ball.innerText = numbers[i]
+        document.getElementById('ball-container').appendChild(ball)
+        
+        if (numbers[i] < 11) {
+          ball.style.backgroundColor = 'yellow'
+        } else if (numbers[i] < 21) {
+          ball.style.backgroundColor = 'blue'
+        } else if (numbers[i] < 31) {
+          ball.style.backgroundColor = 'red'
+        } else if (numbers[i] < 41) {
+          ball.style.backgroundColor = 'grey'
+        } else {
+          ball.style.backgroundColor = 'green'
+        }
+
+
+      }
+      
+      alert('로또 번호가 생성되었습니다!')
+    
+    })
+  </script>
+</body>
+</html>
